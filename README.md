@@ -13,7 +13,7 @@ There is the advantage of accessibility to the approach outlined above: anybody 
 
 Some other requirements that these pages meet are:
 
-1) All sample text that's to be tested is in Unicode characters. 
+1) All sample "test" text in the HTML markup is written in Unicode characters. 
 For example, the Thai Character NGO NGU would be included using either or both the decimal and/or hex designations as follows:
 
 THAI CHARACTER NGO NGU
@@ -25,15 +25,15 @@ and/or
 &amp;#x0E07;
 <!-- &#x0E07; -->
 
-The reason for this is the increasing ubiquitousness of Unicode - it seems pointless to use any legacy encoding scheme in this day and age. Plus, it makes for a more "bulletproof" test page. A page that can't be mangled by selecting an alternate encoding in the browser. Let's call it "defensive coding". 
-(The only excetion to this right now is for the basic Latin set. I simply haven't decided if it's wise or necessary to convert those characters to Unicode in the HTML. English has become the world's fallback "pivot" language and it might create more confusion to use Unicode points rather than the characters themselves. Will decide and advise at some point.)
+The reason for this is the increasing ubiquitousness of Unicode - it seems pointless to use any legacy encoding scheme in this day and age. Plus, it makes for a more "bulletproof" test page: it makes for a page that can't easily be mangled by, for example, selecting an alternate encoding in the browser. Let's call it "defensive coding". 
+(The only exception to this right now is for the basic Latin set. I simply haven't decided if it's wise or necessary to convert those characters to Unicode in the HTML. English has become the world's fallback "pivot" language and it might create more confusion to use Unicode points rather than the characters themselves. Will decide and advise at some point.)
 
 
 Acknowledgments:
 These pages started out as my private way of testing web fonts. Now, in conjunction with work I'm doing with fonts coming out of the Google Web Fonts project under the aegis of Dave Crossland, they are being released here under an open-source license and  (Adding a license in this case just makes it clear that you can take what you want and build upon these pages as you please) But I haven't as yet determined which license. I will add a license.md soon. In the meantime, take, take, take, as you will.
 I am busily working on new pages for Arabic and Hindic language sets plus other stuff which will appear soon.
 I'm extremely grateful to Pablo Impallari and Vernon Adams for the test pages they've freely published. I have borrowed and will continue to borrow, freely. My thanks.
-[There are others to be mentioned, but I'll be back with more thanks soon.] 
+[There are others to be mentioned, but I'll be back with more soon.] 
 
 Richard Fink - Nov 1, 2015
 
