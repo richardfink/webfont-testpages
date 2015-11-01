@@ -29,7 +29,7 @@ The reason for this is the increasing ubiquitousness of Unicode - it seems point
 (The only exception to this right now is for the basic Latin set. I simply haven't decided if it's wise or necessary to convert those characters to Unicode in the HTML. English has become the world's fallback "pivot" language and it might create more confusion to use Unicode points rather than the characters themselves. Will decide and advise at some point.)
 
 
-Acknowledgments:
+2) Acknowledgments:
 These pages started out as my private way of testing web fonts. Now, in conjunction with work I'm doing with fonts coming out of the Google Web Fonts project under the aegis of Dave Crossland, they are being released here under an open-source license and  (Adding a license in this case just makes it clear that you can take what you want and build upon these pages as you please) But I haven't as yet determined which license. I will add a license.md soon. In the meantime, take, take, take, as you will.
 I am busily working on new pages for Arabic and Hindic language sets plus other stuff which will appear soon.
 I'm extremely grateful to Pablo Impallari and Vernon Adams for the test pages they've freely published. I have borrowed and will continue to borrow, freely. My thanks.
