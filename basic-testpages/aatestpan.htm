@@ -1,0 +1,1072 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Pangram Font Tester</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<style type="text/css" media="screen">
+@font-face {
+	font-family: 'testfont';
+	src: url('test-g-webfont.eot');
+	src: url('test-g-webfont.eot?#iefix')format('eot'),url('test-g-webfont.ttf') format('truetype');
+	font-weight: normal;font-style: normal;
+}
+@font-face {
+	font-family: 'testfonto';
+	src: url('test-o-webfont.eot');
+	src: url('test-o-webfont.eot?#iefix')format('eot'),url('test-o-webfont.ttf') format('truetype');
+	font-weight: normal;font-style: normal;
+}
+/* 
+@font-face {
+	font-family: 'fallbackmask';
+	src: url('fallbackmask.eot');
+src:url('fallbackmask.eot?#iefix')format('embedded-opentype'),url('fallbackmask.woff')format('woff'),url('fallbackmask.ttf') format('truetype');
+	font-weight: normal;font-style: normal;
+}
+*/
+@font-face{font-family:'backdrop';src:url(data:font/woff;charset=utf-8;base64,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) format('woff');
+    font-weight: normal;font-style: normal;
+	}
+		body {font-family: Helvetica, Arial, sans-serif; color:#333;}
+		.testfont {
+			font-weight: normal;font-style: normal;
+			line-height:normal;
+			font-family: 'testfont','fallbackmask',arial, sans-serif;
+			/* localfallback */
+			/*font-size-adjust: 0.43;*/
+			/*text-transform:uppercase;
+			text-transform:lowercase;
+			text-transform:capitalize;
+			text-transform:none;*/
+		}
+		
+		.size {
+			font-family:Helvetica, Arial, sans-serif;
+			font-weight:normal;font-style: normal;
+			font-size:14px;
+			display:inline-block;width:20px;
+			position:relative;width:20px;left:auto;top:auto;
+			margin-right:10px;
+			width:26px; /*after underscore*/
+			text-align:center;
+		}
+		#container {
+			width: 1000px;
+			margin-left: 100px;
+			margin-right: auto;
+			/*overflow: hidden;*/
+			/*border: 1px solid black;*/
+		}
+		#largersizes >p.samplebox {
+			margin-left:-50px;
+			whitespace:wrap;
+		}
+		.samplebox {
+			white-space:nowrap;
+			margin-top:10px;
+			margin-bottom: 0px;
+			/*display:none;*/
+		}
+		#sizejumps, #sizejumpsB{margin:6px auto 6px auto;font-family:Helvetica, Arial, sans-serif;}
+		#sizejumpsB{font-size:16px;padding-top:10px;text-transform:none;font-family:Helvetica, Arial, sans-serif;}
+
+a{text-decoration:none;}		
+a:link {color:black;}
+a:visited {color:black;}
+a:active {color:black;}
+a:hover {color:black;}
+
+a.floatmenu{
+display:inline-block;height:10px;width:20px;
+text-align:center;font-family:Helvetica, Arial, sans-serif;
+color:gray;
+}
+
+#size-select a:hover{border:1px solid gray;}
+#size-selectB a:hover{border:1px solid gray;}
+#size-select{margin-bottom:4px;}
+#size-selectB{margin-bottom:4px;}
+
+/*These set the default view states for the text and the corresponding button is greyed out.*/
+.span0{display:inline-block;}
+.span1{display:none;}
+.span2{display:none;}
+.span3{display:none;}
+.span4{display:none;}
+.span5{display:none;}
+.span6{display:none;}
+.span7{display:none;}
+.span8{display:none;}
+.span9{display:none;}
+.span10{display:none;}
+.span11{display:none;}
+
+/*#switchbtn0,#switchbtn1,#switchbtn2,#switchbtn3,#switchbtn4{*/
+#swapfont, #swapfontB{color:gray;}
+#switchbtn0{color:gray;}
+#switchbtnB0{color:gray;} /* for "shadow" floating node */
+/* Note: the suffix of the switchbtn[] id and the name array ['span0', 'span1', etc....] and the span suffixes all need to agree.*/
+</style>
+<script type="text/javascript">
+// vS is short for "viewSwitcher"
+var vS={
+floatranonce:false,
+floatMenuState:false,
+floatmenu:{},
+currSizeNode:{},
+currSizeLine:"",
+currFontFamily:"testfont",
+twoFontEnabled:false,
+state:0,
+p_array:['span0','span1','span2','span3','span4','span5', 'span6', 'span7', 'span8', 'span9', 'span10','span11'],
+changeFont:function(j){
+if (j===false){
+vS.twoFontEnabled=true;
+// confirm('Enable Two-Font Compare Mode?');
+var d=document,f=d.getElementById('swapfont'),g=d.getElementById('swapfontB');
+f.style.color='black';
+g.style.color='black';
+return;
+}
+if (j===true){
+var currsel=vS.p_array[vS.state];
+// a is the classname of the element(s) (string), b is the value to set(string), p is the style property,
+// t is the tagname(*)??,container is the section of the page to look within (body or a div, usually), v is the namespace prefix.
+if (vS.currFontFamily=='testfont') {
+var otherFontFamily="testfonto,fallbackmask,arial";
+/* Code to be added - pending working out the final code and testing it:
+if (document.getElementById().currentStyle.fontFamily=='arial')
+alert('No Second Font For Comparison');
+*/
+}else{
+var otherFontFamily='testfont';
+}
+var b=document.body;
+// first argument is a className same as the CSS font family name. So don't get confused. Should be changed, perhaps. 
+vS.changeElements(currsel,otherFontFamily,'fontFamily','span',b);
+vS.currFontFamily=otherFontFamily;
+var d=document,f=d.getElementById('swapfont'),g=d.getElementById('swapfontB');
+f.style.color='black';
+g.style.color='black';
+}
+},
+change:function(a){
+/* process shadow floating menu node: */
+var d=document,b=d.body,x=d.getElementById('btnarrayB'),currselB=vS.p_array[vS.state], spanclassB=vS.p_array[a],newactbtnB='switchbtnB'+a.toString(),t=d.getElementById(newactbtnB);
+vS.changeElements(currselB,'none','display','span',b);
+vS.changeElements(spanclassB,'inline','display','span',b);
+vS.changeElements('sbtn','black','color','input',x);
+t.style.color='gray';
+vS.state=a; /*a is ??  */
+/* process top of page menu to agree with it's shadow node */
+var d=document,b=d.body,g=d.getElementById('btnarray'),currsel=vS.p_array[vS.state], spanclass=vS.p_array[a],newactbtn='switchbtn'+a.toString(),s=d.getElementById(newactbtn);
+vS.changeElements(currsel,'none','display','span',b);
+vS.changeElements(spanclass,'inline','display','span',b);
+vS.changeElements('sbtn','black','color','input',g);
+s.style.color='gray';
+vS.state=a;
+},
+// a is the className of the element(s) as a string, b is the value to set as a string, p is the style property, t is the tagname(*)??,container is the section of the page to look within (body or a div, usually), v is the namespace prefix.
+changeElements:function(a,b,p,t,c){var z=vS.getClass(a,c,t),j=z.length;
+do{j--;z[j].style[p]=b;}while(j)
+},
+textTransforms:function(a){
+var aa=parseInt(a),transformType = ['uppercase', 'capitalize', 'lowercase', 'none'],b=document.body;
+vS.changeElements('testfont',transformType[aa],'textTransform','p',b);
+},
+// Call:: s (searchClass) is the class name, n (node) is the container obj to search within, t (tag) narrows the search
+// if the class was applied to only a single kind of element
+getClass:function(s,n,t){
+var i,j,c=[],n=(n==null)?document:n,t=(t==null)?'*':t,e=n.getElementsByTagName(t),L=e.length,p=new RegExp("(^|\\s)"+s+"(\\s|$)");
+for(i=0,j=0;i<L;i++){if(p.test(e[i].className)){c[j]=e[i];j++;}}return c;
+},
+currentYPosition:function(){
+	if (self.pageYOffset)
+		 return self.pageYOffset;
+	if (document.documentElement && document.documentElement.scrollTop)
+		return document.documentElement.scrollTop;
+	if (document.body.scrollTop)
+		 return document.body.scrollTop;
+	return 0;
+},
+elmYPosition:function(eID){
+	var elm  = document.getElementById(eID);
+	var y    = elm.offsetTop;
+	var node = elm;
+	while (node.offsetParent && node.offsetParent != document.body) {
+		node = node.offsetParent;
+		y   += node.offsetTop;
+	} return y;
+},
+smoothScroll: function(eID){
+if (vS.floatMenuState){
+var u=document.getElementById("container");
+vS.floatmenu.style.visibility="hidden";
+u.appendChild(vS.floatmenu);
+vS.floatMenuState=false;
+}
+	var startY   = vS.currentYPosition();
+	var stopY    = vS.elmYPosition(eID);
+	var distance = stopY > startY ? stopY - startY : startY - stopY;
+	if (distance < 100) {
+		scrollTo(0, stopY); return;
+	}
+	var speed = Math.round(distance / 100);
+	if (speed >= 20) speed = 20;
+	var step  = Math.round(distance / 25);
+	var leapY = stopY > startY ? startY + step : startY - step;
+	var timer = 0;
+	if (stopY > startY) {
+		for ( var i=startY; i<stopY; i+=step ) {
+			setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+			leapY += step; if (leapY > stopY) leapY = stopY; timer++;
+		} return;
+	}
+	for ( var i=startY; i>stopY; i-=step ) {
+		setTimeout("window.scrollTo(0, "+leapY+")", timer * speed);
+		leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
+	}
+},
+menufloatstate:0,
+pclonenode:0,
+parentnode:0,
+getsizejumps: function(a){
+var parentNode=document.getElementById(a);
+/* to click again and stay in same place without menu */
+// this parentNode is not same as currSizeNode  !!!!!!!
+if (vS.floatMenuState && a==vS.currSizeLine){
+var u=document.getElementById("container");
+vS.floatmenu.style.visibility="hidden";
+u.appendChild(vS.floatmenu);
+vS.floatMenuState=false;
+return;
+}
+vS.currSizeNode=parentNode;
+if (!vS.floatranonce) {
+var p=document.getElementById("sizejumpsB");
+vS.floatmenu=p;
+p.style.visibility="visible";
+vS.floatranonce = true;
+}
+parentNode.appendChild(vS.floatmenu);
+vS.floatmenu.style.visibility="visible";
+vS.floatMenuState=true;
+vS.currSizeLine=a;
+ }
+};
+</script>
+</head>
+<body id="body">
+	<div id="container">
+	<h1 class="testfont">%Font Name%</h1>
+	<p>&nbsp;&nbsp;<a href="aatestpar.htm">Text</a>&nbsp;|&nbsp;<a href="aatestbas.htm">Basics</a>&nbsp;|&nbsp;<a href="aatestacc.htm">Accents</a>&nbsp;|&nbsp;&nbsp;|&nbsp;&nbsp;|&nbsp;<span id="basic-css-variations"><a href="javascript:void(0);" onclick="vS.textTransforms(0);">Upper Case</a>
+	&nbsp;|&nbsp;<a href="javascript:void(0);" onclick="vS.textTransforms(1);">First Letter</a>
+	&nbsp;|&nbsp;<a href="javascript:void(0);" onclick="vS.textTransforms(2);">LowerCase</a>
+	&nbsp;|&nbsp;<a href="javascript:void(0);" onclick="vS.textTransforms(3);">Normal</a>
+	</span>
+	</p>
+	<div id="sizejumps">
+	<div id="size-select">
+<a id="swapfont" title="Click To Enable Two-Font Compare" href="javascript:void(0);" onclick="vS.changeFont(vS.twoFontEnabled);return false;">Swap</a>
+<a id="anchortop" href="#anchortop" onclick="vS.smoothScroll('f31');return false;">Med</a>
+<a id="anchortop2" href="#anchortop2" onclick="vS.smoothScroll('f44');return false;">Big</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f31');return false;">31</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f32');return false;">32</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f34');return false;">34</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f36');return false;">36</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f38');return false;">38</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f40');return false;">40</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f42');return false;">42</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f44');return false;">44</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f48');return false;">48</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f52');return false;">52</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f56');return false;">56</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f60');return false;">60</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f64');return false;">64</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f68');return false;">68</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f72');return false;">72</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f10');return false;">10</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f11');return false;">11</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f12');return false;">12</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f13');return false;">13</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f14');return false;">14</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f15');return false;">15</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f16');return false;">16</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f17');return false;">17</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f18');return false;">18</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f19');return false;">19</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f20');return false;">20</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f21');return false;">21</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f22');return false;">22</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f23');return false;">23</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f24');return false;">24</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f25');return false;">25</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f26');return false;">26</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f27');return false;">27</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f28');return false;">28</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f29');return false;">29</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f30');return false;">30</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f31');return false;">31</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f32');return false;">32</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f33');return false;">33</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f34');return false;">34</a>
+</div><!-- end size-select -->
+<div id="btnarray">
+<input id="switchbtn0" class="sbtn" type="button" onclick="vS.change(0);return false;" value="Jackdaws"/>
+<input id="switchbtn1" class="sbtn" type="button" onclick="vS.change(1);return false;" value="Brown Fox"/>
+<input id="switchbtn2" class="sbtn" type="button" onclick="vS.change(2);return false;" value="Squid Pen"/>
+<input id="switchbtn3" class="sbtn" type="button" onclick="vS.change(3);return false;" value="Razorback"/>
+<input id="switchbtn4" class="sbtn" type="button" onclick="vS.change(4);return false;" value="Liquor Jugs"/>
+<input id="switchbtn5" class="sbtn" type="button" onclick="vS.change(5);return false;" value="Quiz Crowd"/>
+<input id="switchbtn6" class="sbtn" type="button" onclick="vS.change(6);return false;" value="Five Boxing"/>
+<input id="switchbtn7" class="sbtn" type="button" onclick="vS.change(7);return false;" value="Mad Boxer"/>
+<input id="switchbtn8" class="sbtn" type="button" onclick="vS.change(8);return false;" value="Fredericka"/>
+<input id="switchbtn9" class="sbtn" type="button" onclick="vS.change(9);return false;" value="Amazed Girls"/>
+<input id="switchbtn10" class="sbtn" type="button" onclick="vS.change(10);return false;" value="Ebenezer"/>
+<input id="switchbtn11" class="sbtn" type="button" onclick="vS.change(11);return false;" value="Grumpy"/>
+</div><!-- end btnarray -->
+</div> <!-- end sizejumps -->
+<!-- note: reverse the order on every other one to get a side-by-side?? -->
+<p id="f30" class="testfont samplebox" style="font-size:30px;"><span class="size" style="text-align:center;"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">30</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f30');">&#95;&#95;</a>&nbsp;</span>
+<span class="span0" onclick="alert(this.currentStyle.fontFamily);">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span>
+</p>
+<p id="f29" class="testfont samplebox" style="font-size:29px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">29</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f29')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f28" class="testfont samplebox" style="font-size:28px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">28</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f28')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f27" class="testfont samplebox" style="font-size:27px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">27</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f27')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f26" class="testfont samplebox" style="font-size:26px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">26</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f26')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f25" class="testfont samplebox" style="font-size:25px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">25</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f25')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f24" class="testfont samplebox" style="font-size:24px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">24</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f24')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f23" class="testfont samplebox" style="font-size:23px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">23</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f23')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f22" class="testfont samplebox" style="font-size:22px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">22</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f22')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f21" class="testfont samplebox" style="font-size:21px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">21</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f21')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f20" class="testfont samplebox" style="font-size:20px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">20</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f20')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f19" class="testfont samplebox" style="font-size:19px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">19</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f19')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f18" class="testfont samplebox" style="font-size:18px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">18</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f18')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f17" class="testfont samplebox" style="font-size:17px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">17</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f17')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f16" class="testfont samplebox" style="font-size:16px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">16</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f16')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f15" class="testfont samplebox" style="font-size:15px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">15</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f15')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f14" class="testfont samplebox" style="font-size:14px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">14</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f14')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f13" class="testfont samplebox" style="font-size:13px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">13</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f13')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f12" class="testfont samplebox" style="font-size:12px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">12</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f12')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f11" class="testfont samplebox" style="font-size:11px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">11</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f11')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f10" class="testfont samplebox" style="font-size:10px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">10</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f10')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<div id="largersizes">
+<p  id="f31" class="testfont samplebox" style="font-size:31px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">31</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f31')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f32" class="testfont samplebox" style="font-size:32px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">32</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f32')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f34" class="testfont samplebox" style="font-size:34px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">34</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f34')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f36" class="testfont samplebox" style="font-size:36px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">36</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f36')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f38" class="testfont samplebox" style="font-size:38px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">38</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f38')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f40" class="testfont samplebox" style="font-size:40px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">40</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f40')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f42" class="testfont samplebox" style="font-size:42px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">42</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f42')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f44" class="testfont samplebox" style="font-size:44px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">44</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f44')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f48" class="testfont samplebox" style="font-size:48px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">48</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f48')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f52" class="testfont samplebox" style="font-size:52px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">52</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f52')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f56" class="testfont samplebox" style="font-size:56px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">56</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f56')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f60" class="testfont samplebox" style="font-size:60px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">60</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f60')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f64" class="testfont samplebox" style="font-size:64px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">64</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f64')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f68" class="testfont samplebox" style="font-size:68px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">68</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f68')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p id="f72" class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>
+<a class="floatmenu" title="Show Menu" href="javascript:void(0);" onclick="vS.getsizejumps('f72')">&#95;&#95;</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<div id="endpagefiller" style="visibility:hidden;">
+
+
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+<p class="testfont samplebox" style="font-size:72px;"><span class="size"><a href="javascript:void(0);" onclick="vS.smoothScroll('body')">72</a>&nbsp;</span>
+<span class="span0">Jackdaws love my big sphinx of quartz.</span>
+<span class="span1">The quick brown fox jumps over the lazy dog.</span>
+<span class="span2">Cozy lummox gives smart squid who asks for job pen.</span>
+<span class="span3">How razorback-jumping frogs can level six piqued gymnasts!</span>
+<span class="span4">Pack my box with five dozen liquor jugs.</span>
+<span class="span5">My ex pub quiz crowd gave joyful thanks.</span>
+<span class="span6">The five boxing wizards jump quickly.</span>
+<span class="span7">A mad boxer shot a quick gloved jab to the jaw of his dizzy opponent</span>
+<span class="span8">Fredericka bought many very exquisite crazy opal jewels</span>
+<span class="span9">Jack amazed a few girls by dropping the antique onyx vase</span>
+<span class="span10">Ebenezer unexpectedly bagged two tranquil aadvarks with his jiffy vacuum cleaner</span>
+<span class="span11">Grumpy wizards make toxic brew for the evil Queen and Jack.</span></p>
+</div><!-- endpagefiller -->
+</div><!-- end largersizes -->
+</div><!-- end sampleboxes -->
+	<div id="sizejumpsB" style="visibility:hidden;">
+	<div id="size-selectB">
+<a id="swapfontB" title="Click To Enable Two-Font Compare" href="javascript:void(0);" onclick="vS.changeFont(vS.twoFontEnabled);">Swap</a>
+<a id="anchortopB" href="#anchortopB" onclick="vS.smoothScroll('f31');return false;">Med</a>
+<a id="anchortop2B" href="#anchortop2B" onclick="vS.smoothScroll('f44');return false;">Big</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f31');return false;">31</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f32');return false;">32</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f34');return false;">34</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f36');return false;">36</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f38');return false;">38</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f40');return false;">40</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f42');return false;">42</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f44');return false;">44</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f48');return false;">48</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f52');return false;">52</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f56');return false;">56</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f60');return false;">60</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f64');return false;">64</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f68');return false;">68</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f72');return false;">72</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f10');return false;">10</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f11');return false;">11</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f12');return false;">12</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f13');return false;">13</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f14');return false;">14</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f15');return false;">15</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f16');return false;">16</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f17');return false;">17</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f18');return false;">18</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f19');return false;">19</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f20');return false;">20</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f21');return false;">21</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f22');return false;">22</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f23');return false;">23</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f24');return false;">24</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f25');return false;">25</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f26');return false;">26</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f27');return false;">27</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f28');return false;">28</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f29');return false;">29</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f30');return false;">30</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f31');return false;">31</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f32');return false;">32</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f33');return false;">33</a>
+<a href="javascript:void(0);" onclick="vS.smoothScroll('f34');return false;">34</a>
+</div><!-- end size select -->
+<div id="btnarrayB">
+<input id="switchbtnB0" class="sbtn" type="button" onclick="vS.change(0);return false;" value="Jackdaws"/>
+<input id="switchbtnB1" class="sbtn" type="button" onclick="vS.change(1);return false;" value="Brown Fox"/>
+<input id="switchbtnB2" class="sbtn" type="button" onclick="vS.change(2);return false;" value="Squid Pen"/>
+<input id="switchbtnB3" class="sbtn" type="button" onclick="vS.change(3);return false;" value="Razorback"/>
+<input id="switchbtnB4" class="sbtn" type="button" onclick="vS.change(4);return false;" value="Liquor Jugs"/>
+<input id="switchbtnB5" class="sbtn" type="button" onclick="vS.change(5);return false;" value="Quiz Crowd"/>
+<input id="switchbtnB6" class="sbtn" type="button" onclick="vS.change(6);return false;" value="Five Boxing"/>
+<input id="switchbtnB7" class="sbtn" type="button" onclick="vS.change(7);return false;" value="Mad Boxer"/>
+<input id="switchbtnB8" class="sbtn" type="button" onclick="vS.change(8);return false;" value="Fredericka"/>
+<input id="switchbtnB9" class="sbtn" type="button" onclick="vS.change(9);return false;" value="Amazed Girls"/>
+<input id="switchbtnB10" class="sbtn" type="button" onclick="vS.change(10);return false;" value="Ebenezer"/>
+<input id="switchbtnB11" class="sbtn" type="button" onclick="vS.change(11);return false;" value="Grumpy"/>
+<p id="text-widgets" style="display:none;">
+<span id="basic-css-variations"><a href="javascript:void(0);" onclick="vS.textTransforms(0);">Upper Case</a>
+	&nbsp;|&nbsp;<a href="javascript:void(0);" onclick="vS.textTransforms(1);">First Letter</a>
+	&nbsp;|&nbsp;<a href="javascript:void(0);" onclick="vS.textTransforms(2);">LowerCase</a>
+	&nbsp;|&nbsp;<a href="javascript:void(0);" onclick="vS.textTransforms(3);">Normal</a>
+	</span>
+	</p>
+</div><!-- end btnarrayB -->
+</div> <!-- end sizejumpsB -->
+</div><!-- end container -->
+<p style="visibility:hidden;height:1px;font-family:'testfonto';"></p>
+<!-- above element to make sure alternative version font is pulled in if it exists -->
+</body>
+</html>
