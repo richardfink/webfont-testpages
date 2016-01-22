@@ -1,1 +1,1 @@
-
+To use this test suite - the way it's currently put together, put all the files into one directory and start by clicking on the GWF-Test-Pages-Index.htm page. That page has introductory information and links to the other pages in the suite. 
