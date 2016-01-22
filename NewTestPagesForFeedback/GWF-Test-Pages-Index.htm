@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" />
+<head>
+<title>Google Web Font Test Page Index</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<!--  Mobile Viewport
+	http://j.mp/mobileviewport & http://davidbcalhoun.com/2010/viewport-metatag
+	device-width : Occupy full width of the screen in its current orientation
+	initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+	maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width (wrong for most sites)
+	-->
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<meta name="author" content="Richard Fink for Google Web Fonts" />
+<meta name="description" content="Index of various test pages created for Google Web Fonts" />
+<style>
+body{font-size: 18px;margin-left: 10em; margin-right:10em;}
+</style>
+</head>
+<body>
+<h1>Index Of Demo Test Pages For Google Web Fonts</h1>
+<p>Richard Fink - rfink0553@gmail.com.</p>
+<a href="drag'n'dropfont-Latin4.htm" target="_blank">Drag 'n' Drop Font X-Ray for Adobe Latin 4</a><br />
+<p>To load a font to test, just drag and drop any TTF, OTF, or WOFF file onto the Font Loader Bar. You can load more than one if you like and they will remain individually selectable for comparison until the page is refreshed. The Loader Bar can be hidden from view just by clicking the Drag Bar OFF button in the upper left of the page. Need it back to load or select another font? Just click the Drag Bar On button.<p>
+<a href="drag'n'dropfont-PANGRAMS-EN-Thai.htm" target="_blank">Drag 'n' Drop Pangrams for English and Thai</a><br />
+<p>This page also uses a drag and drop Font Loader Bar but instead of checking a font's support for a character set, this page has two categories of test phrases -  two for the Thai language and several others for English. Notice that since the default font when the page first loads is Arial, there aren't any Thai characters to display. And that's why you see the "backdrop" fallback font which shows the Unicode points for those characters instead of glyphs. As is the case in all these test pages, the backdrop font which contains a huge set of Unicode characters is embedded in the page using a Base 64 Data URI made from a WOFF of the original TTF font. This page was a bit of a quick experiment to show how different kinds of phrases and languages can be mixed together to either check each individually or to see how they flow and/or contrast in the same sentence or paragraph.</p>
+<a href="Latin-4-Test_1-plusThai.htm" target="_blank">Google Web Font X-Ray Test Page for Thai and the Adobe Latin 4 Character Set</a><br />
+<p>This is not a drag and drop page. It uses a @font-face declaration of your choice and loads that particular font to see if it covers or doesn't cover, the characters in the Thai language (as defined in the Unicode standard) and also the Adobe Latin 4 set.<br />
+The font chosen here is Athiti Regular (400) which is a recent project by foundry Cadson Demak for Google Fonts.<br />There are at least two potential problems revealed by this test: 1) There is no SCHWA character, which technically IS called for in the Adobe Latin 4 set and 2) The combined Capital G with Tilde in the next to last table cel in the Latin 4 table, isn't displaying correctly. The tilde is lying on top (or on bottom) of the Capital G. As of this writing, I haven't checked for the cause of the malfunction.</p>
+<a href="Latin-1-Test_1.htm" target="_blank">Google Web Font X-Ray Test Page for the Adobe Latin 1 Character Set</a><br />
+<p>Checks for the Latin 1 set. </p>
+<a href="Latin-2-Test_1.htm" target="_blank">Google Web Font X-Ray Test Page for the Adobe Latin 2 Character Set</a><br />
+<p><p>Checks for the Latin 2 set.</p></p>
+<a href="Latin-3-Test_1.htm" target="_blank">Google Web Font X-Ray Test Page for the Adobe Latin 3 Character Set</a><br />
+<p>Checks for the Latin 3 set.</p>
+<a href="Latin-4-Test_1.htm" target="_blank">Google Web Font X-Ray Test Page for the Adobe Latin 4 Character Set</a><br />
+<p>Checks for the Latin 4 set.</p>
+<p>Note: there will soon be a test page with which the user, with a click, can select any of the Adobe sets to check(including Latin 5) using the same page. (Either through color coding, or a hide/show of table cels or both maybe - whatever delivers the information most clearly to the user. Workin' on it.)</p>
+<!--
+<a href="" target="_blank"></a><br />
+<a href="" target="_blank"></a><br />
+-->
+</body>
+</html>
